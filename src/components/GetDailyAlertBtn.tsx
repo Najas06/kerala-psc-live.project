@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { MoveRight } from "lucide-react";
+import { toast } from "sonner";
 
 export function GetDailyAlertBtn() {
   const [email, setEmail] = useState("");
@@ -29,6 +30,8 @@ export function GetDailyAlertBtn() {
       setError("Please enter a valid email address.");
       return;
     }
+
+    toast.success(`You will get daily alets in ${email}`)
 
     // ✅ handle email (API call, etc.)
     console.log("Subscribed with:", email);

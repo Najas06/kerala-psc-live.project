@@ -1,7 +1,17 @@
+import ArticleCard from "@/components/ArticleCard";
+import ChooseCard from "@/components/ChooseCard";
 import { GetDailyAlertBtn } from "@/components/GetDailyAlertBtn";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import PostCard from "@/components/PostCard";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { MoveRight } from "lucide-react";
+import {
+  CircleHelp,
+  ClockFading,
+  MonitorSmartphone,
+  MoveRight,
+  ShieldCheck,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -38,13 +48,14 @@ export default function Home() {
                 >
                   Get Daily Alerts <MoveRight />
                 </Button> */}
-                <GetDailyAlertBtn/>
+                <GetDailyAlertBtn />
               </div>
             </div>
           </div>
         </MaxWidthWrapper>
       </section>
 
+      {/* new update  */}
       <section>
         <MaxWidthWrapper>
           <div className="py-5 md:py-10">
@@ -52,9 +63,177 @@ export default function Home() {
               New Jobs Alert{" "}
               <span className="text-green-600 underline font-semibold">{`${new Date().toDateString()}`}</span>
             </h1>
+
+            {/* card section  */}
+            <div className="flex justify-center">
+              <div className="my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
+                {dummyData.slice(0, 8).map((job, index) => (
+                  <PostCard key={index} {...job} />
+                ))}
+              </div>
+            </div>
+            <div className="flex py-2 border-b justify-center items-center">
+              <Link href="/jobs" className={buttonVariants({ size: "lg" })}>
+                View All Jobs
+              </Link>
+            </div>
+          </div>
+        </MaxWidthWrapper>
+      </section>
+
+      {/* why choose section  */}
+      <section>
+        <MaxWidthWrapper>
+          <h3 className="text-center text-2xl py-3 font-semibold tracking-tight md:text-3xl">
+            Why choose us ?
+          </h3>
+
+          <div className="flex justify-center py-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              {whyChooseDummyData.map((card, index) => (
+                <ChooseCard key={index} {...card} />
+              ))}
+            </div>
+          </div>
+          <h3 className="px-3 my-5 font-light md:text-lg text-sm ">
+            We provide up-to-date and accurate information on{" "}
+            <span className="text-green-600 font-semibold underline">
+              Kerala PSC Jobs{" "}
+            </span>
+            opening, ensuring you never miss an oppertunity.
+          </h3>
+          <div className="border-b" />
+        </MaxWidthWrapper>
+      </section>
+
+      {/* article section  */}
+      <section>
+        <MaxWidthWrapper>
+          <div className="py-5 md:py-10">
+            <h1 className="text-sm md:text-xl tracking-tighter  px-2">
+              Latest Articles{" "}
+              <span className="text-green-600 underline font-semibold">
+                Kerala PSC Jobs
+              </span>
+            </h1>
+
+            {/* article card  */}
+            <div className=" my-5">
+              {/* article card components items  */}
+
+              {dummyData.slice(0, 4).map((item, index) => (
+                <ArticleCard key={index} {...item} />
+              ))}
+            </div>
           </div>
         </MaxWidthWrapper>
       </section>
     </div>
   );
 }
+
+const dummyData = [
+  {
+    title: "Assistant Prison Officer",
+    description:
+      "Direct recruitment to the Kerala Prisons Department. Physical test required.",
+    lastDate: "2025-06-30",
+  },
+  {
+    title: "Junior Health Inspector Grade II",
+    description:
+      "Vacancies under the Health Services Department. Must have Health Inspector diploma.",
+    lastDate: "2025-07-05",
+  },
+  {
+    title: "Lower Division Clerk (LDC)",
+    description:
+      "District-wise recruitment. SSLC pass required. Typing speed desirable.",
+    lastDate: "2025-06-25",
+  },
+  {
+    title: "Village Field Assistant",
+    description:
+      "Recruitment under Revenue Department. Matriculation required.",
+    lastDate: "2025-07-15",
+  },
+  {
+    title: "High School Teacher (Maths) – Malayalam Medium",
+    description:
+      "Recruitment in Education Department. B.Ed and K-TET required.",
+    lastDate: "2025-06-28",
+  },
+  {
+    title: "Police Constable (Armed Police Battalion)",
+    description:
+      "Only for male candidates. Physical efficiency test mandatory.",
+    lastDate: "2025-07-01",
+  },
+  {
+    title: "Assistant Grade II – Kerala State Co-operative Bank",
+    description: "Commerce degree and computer knowledge preferred.",
+    lastDate: "2025-07-10",
+  },
+  {
+    title: "Typist Clerk / Clerk Typist",
+    description: "Typing test and knowledge of Malayalam required.",
+    lastDate: "2025-06-27",
+  },
+  {
+    title: "Lecturer in Electronics Engineering – Polytechnic Colleges",
+    description: "First class Bachelor's Degree in Engineering mandatory.",
+    lastDate: "2025-07-18",
+  },
+  {
+    title: "Staff Nurse Grade II",
+    description:
+      "GNM or BSc Nursing required. Posting under Health Department.",
+    lastDate: "2025-06-29",
+  },
+];
+
+const whyChooseDummyData = [
+  {
+    title: "Real-Time Updates",
+    description:
+      "Get instant notifications for new job posting and exam alerts",
+    icon: (
+      <ClockFading
+        size={80}
+        className="  rounded-full text-green-600 p-4 bg-[#E6FFFA]"
+      />
+    ),
+  },
+  {
+    title: "Verified Job Listing",
+    description:
+      "All Jobs are sourced directly from offical Kerala PSC website",
+    icon: (
+      <ShieldCheck
+        size={80}
+        className="rounded-full text-green-600 p-4 bg-[#E6FFFA]"
+      />
+    ),
+  },
+  {
+    title: "User-friendly Interface",
+    description:
+      "Easily nagivate and find the information you need, hassle free",
+    icon: (
+      <MonitorSmartphone
+        size={80}
+        className="rounded-full text-green-600 p-4 bg-[#E6fffa]"
+      />
+    ),
+  },
+  {
+    title: "Dedicated Support",
+    description: "Our team is here to assit you with any questions or issues",
+    icon: (
+      <CircleHelp
+        size={80}
+        className="rounded-full text-green-600 p-4 bg-[#E6FFFA]"
+      />
+    ),
+  },
+];
