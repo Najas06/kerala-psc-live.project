@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
+import Footer from "@/components/Footer";
 
 const workSans = localFont({
   src: "./fonts/WorkSans-VariableFont_wght.ttf",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={` antialiased`}>
         <Navbar />
         {children}
+        <Footer/>
         <Toaster richColors  position="top-center" />
       </body>
     </html>

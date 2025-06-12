@@ -104,7 +104,7 @@ const LINKS = [
   },
   {
     name: "Jobs",
-    href: "/",
+    href: "/jobs/all",
   },
   {
     name: "Syllabus",

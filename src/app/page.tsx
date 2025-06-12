@@ -73,7 +73,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex py-2 border-b justify-center items-center">
-              <Link href="/jobs" className={buttonVariants({ size: "lg" })}>
+              <Link href="/jobs/all" className={buttonVariants({ size: "lg" })}>
                 View All Jobs
               </Link>
             </div>
@@ -124,6 +124,15 @@ export default function Home() {
               {dummyData.slice(0, 4).map((item, index) => (
                 <ArticleCard key={index} {...item} />
               ))}
+
+              <div className="flex py-2  justify-center items-center">
+                <Link
+                  href="/articles"
+                  className={buttonVariants({ size: "lg" })}
+                >
+                  View All Articles
+                </Link>
+              </div>
             </div>
           </div>
         </MaxWidthWrapper>
