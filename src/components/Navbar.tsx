@@ -46,7 +46,7 @@ const Navbar = async () => {
                 {isAdmin && (
                   <>
                     <Link
-                      href="/api/auth/logout"
+                      href="/dashboard"
                       className={buttonVariants({
                         size: "sm",
                       })}
@@ -104,7 +104,7 @@ const LINKS = [
   },
   {
     name: "Jobs",
-    href: "/jobs/all",
+    href: "/jobs",
   },
   {
     name: "Syllabus",

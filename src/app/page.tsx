@@ -73,7 +73,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex py-2 border-b justify-center items-center">
-              <Link href="/jobs/all" className={buttonVariants({ size: "lg" })}>
+              <Link href="/jobs" className={buttonVariants({ size: "lg" })}>
                 View All Jobs
               </Link>
             </div>
