@@ -6,10 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SidebarInput } from "@/components/ui/sidebar";
+// import { SidebarInput } from "@/components/ui/sidebar";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export async function SidebarOptInForm() {
   const { getUser } = getKindeServerSession();

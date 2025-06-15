@@ -36,7 +36,7 @@ const ArticleCard = ({
       </div>
       <div className="col-span-1">
         <img
-          src="/bgBanner.jpg"
+          src={image ? image : "/bgBanner.jpg"}
           alt=""
           className="w-full h-[200px] md:h-[300px] rounded-md object-cover md:rounded-l-md md:rounded-r-none"
         />
