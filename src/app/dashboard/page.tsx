@@ -40,7 +40,7 @@ export default async function Page() {
   const job = await fetch(`${baseUrl}/api/jobs`, {
     cache: "no-cache",
   });
-  const jobsData = await job.json();
+  const jobsData = await job.json();  
 
   // console.log(jobsData);
 
