@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar";
+// import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,7 +11,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
-  SidebarProvider,
+  // SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -33,6 +33,22 @@ export default async function Page() {
   if (user?.email !== process.env.ADMIN_EMAIL) {
     redirect("/");
   }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+
+  // JOBS Data Fetching
+  const job = await fetch(`${baseUrl}/api/jobs`, {
+    cache: "no-cache",
+  });
+  const jobsData = await job.json();
+
+  // console.log(jobsData);
+
+  // SUBSCRIBERS Data Fetching
+  const subscriber = await fetch(`${baseUrl}/api/subscribe`, {
+    cache: "no-cache",
+  });
+  const subscribersData = await subscriber.json();
   return (
     <SidebarInset className="border w-full">
       <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 w-full">
@@ -62,7 +78,8 @@ export default async function Page() {
                 </span>
               </h3>
               <p className="my-5 text-3xl md:text-5xl font-semibold text-center">
-                06 <span className="">Users</span>
+                {subscribersData.count > 0 ? subscribersData.count : 0}{" "}
+                <span className="">Users</span>
               </p>
 
               <div>
@@ -83,12 +100,13 @@ export default async function Page() {
                 </span>
               </h3>
               <p className="my-5 text-3xl md:text-5xl font-semibold text-center">
-                30 <span className="">Posts</span>
+                {jobsData.count > 0 ? jobsData.count : 0}{" "}
+                <span className="">Posts</span>
               </p>
 
               <div>
                 <p className="text-[8px] md:text-sm text-gray-600">
-                  Last User Subscribed Date : {new Date().toDateString()}
+                  Last Posts Fetch Date : {new Date().toDateString()}
                 </p>
               </div>
             </Card>
@@ -110,7 +128,7 @@ export default async function Page() {
 
               <div>
                 <p className="text-[8px] md:text-sm text-gray-600">
-                  Last User Subscribed Date : {new Date().toDateString()}
+                  Last Articles Fetch Date : {new Date().toDateString()}
                 </p>
               </div>
             </Card>

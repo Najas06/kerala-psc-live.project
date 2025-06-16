@@ -3,12 +3,11 @@ import ChooseCard from "@/components/ChooseCard";
 import { GetDailyAlertBtn } from "@/components/GetDailyAlertBtn";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import PostCard from "@/components/PostCard";
-import { Button, buttonVariants } from "@/components/ui/button";
+import {  buttonVariants } from "@/components/ui/button";
 import {
   CircleHelp,
   ClockFading,
   MonitorSmartphone,
-  MoveRight,
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
@@ -18,7 +17,7 @@ export default function Home() {
     <div className="bg-slate-50">
       {/* // banner section */}
       <section className="relative">
-        <MaxWidthWrapper className="relative pt-20">
+        <MaxWidthWrapper className="relative ">
           <div className="relative w-full mt-3">
             {/* Background Image */}
             <img

@@ -1,19 +1,19 @@
 "use client";
 
-import { MoreHorizontal, type LucideIcon } from "lucide-react";
+// import { MoreHorizontal, type LucideIcon } from "lucide-react";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
+  // SidebarMenuItem,
+  // useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
@@ -27,7 +27,7 @@ export function NavMain({
     icon?: JSX.Element;
   }[];
 }) {
-  const { isMobile } = useSidebar();
+  // const { isMobile } = useSidebar();
 
   return (
     <SidebarGroup >
