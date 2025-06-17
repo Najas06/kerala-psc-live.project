@@ -3,7 +3,8 @@ import ChooseCard from "@/components/ChooseCard";
 import { GetDailyAlertBtn } from "@/components/GetDailyAlertBtn";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import PostCard from "@/components/PostCard";
-import {  buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { JobResponse } from "@/types/type";
 import {
   CircleHelp,
   ClockFading,
@@ -12,7 +13,14 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+  const job = await fetch(`${baseUrl}/api/jobs`, {
+    cache: "no-cache",
+  });
+  const jobsData: JobResponse = await job.json();
+  // console.log(jobsData);
+
   return (
     <div className="bg-slate-50">
       {/* // banner section */}
@@ -66,8 +74,11 @@ export default function Home() {
             {/* card section  */}
             <div className="flex justify-center">
               <div className="my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
-                {dummyData.slice(0, 8).map((job, index) => (
+                {/* {dummyData.slice(0, 8).map((job, index) => (
                   <PostCard key={index} {...job} />
+                ))} */}
+                {jobsData.data.map((job, index) => (
+                  <PostCard key={index} job={job} />
                 ))}
               </div>
             </div>

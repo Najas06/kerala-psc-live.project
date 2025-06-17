@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "Kerala PSC Live - Jobs Alerts",
   description:
     "Get the latest Kerala PSC Jobs alerts, live notifications, and exam updates in one place. stay a head with PSC Job posts and applications links.",
+  keywords: ["Kerala Psc live", "Kerala psc exams 2025", "Kerala psc jobs"],
 };
 
 export default function RootLayout({
@@ -27,8 +28,8 @@ export default function RootLayout({
       <body className={` antialiased`}>
         <Navbar />
         {children}
-        <Footer/>
-        <Toaster richColors  position="top-center" />
+        <Footer />
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );
