@@ -4,6 +4,7 @@ import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { User } from "lucide-react";
+import MobileNav from "./MobileNav";
 
 const Navbar = async () => {
   const { getUser } = getKindeServerSession();
@@ -39,6 +40,7 @@ const Navbar = async () => {
                   className={buttonVariants({
                     size: "sm",
                     variant: "ghost",
+                    className: "max-sm:hidden",
                   })}
                 >
                   Sign out
@@ -88,7 +90,13 @@ const Navbar = async () => {
                 </Link>
               </>
             )}
+            <div className="md:hidden">
+              {/* Show only on medium screens and smaller */}
+              <MobileNav user={user} isAdmin={isAdmin} />{" "}
+              {/* Pass user and isAdmin */}
+            </div>
           </div>
+          {/* Mobile Navigation (Hamburger Menu) - Only shown on small screens */}
         </div>
       </MaxWidthWrapper>
     </nav>
@@ -115,7 +123,7 @@ const LINKS = [
     href: "/",
   },
   {
-    name: "Blog",
-    href: "/",
+    name: "Articles",
+    href: "/articles",
   },
 ];

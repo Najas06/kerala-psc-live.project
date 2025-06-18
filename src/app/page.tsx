@@ -4,6 +4,7 @@ import { GetDailyAlertBtn } from "@/components/GetDailyAlertBtn";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import PostCard from "@/components/PostCard";
 import { buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { JobResponse } from "@/types/type";
 import {
   CircleHelp,
@@ -11,15 +12,55 @@ import {
   MonitorSmartphone,
   ShieldCheck,
 } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "Kerala PSC Live - Jobs Notifications & Alerts 2025",
+  description:
+    "Get the latest Kerala PSC Jobs alerts, live notifications, and exam updates in one place. stay a head with PSC Job posts and applications links.",
+  keywords: [
+    "Kerala PSC jobs",
+    "Kerala PSC notification 2025",
+    "10th pass jobs Kerala",
+    "12th pass jobs Kerala",
+    "Degree jobs Kerala",
+    "Post Graduation jobs Kerala",
+    "PSC live updates",
+    "Kerala Government jobs",
+    "PSC alerts",
+    "Kerala PSC articles",
+    "Degree jobs Kerala",
+    "PSC latest news",
+    "Kerala PSC Live",
+  ],
+  openGraph: {
+    title: "Kerala PSC Live - Jobs Notifications & Alerts 2025",
+    description:
+      "Get the latest Kerala PSC Jobs alerts, live notifications, and exam updates in one place. stay a head with PSC Job posts and applications links.",
+    url: "keralapsclive.com",
+    siteName: "Kerala PSC Live",
+    images: [
+      {
+        url: "https://wjgczpg1md.ufs.sh/f/IpV2ESqqMQ4eyE6fSwhESegmW9ClBNc5i7OGp3V2z8KMqrRd",
+        width: 800,
+        height: 600,
+        alt: "Kerala PSC Live",
+      },
+    ],
+  },
+};
+
 export default async function Home() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
   const job = await fetch(`${baseUrl}/api/jobs`, {
     cache: "no-cache",
   });
+  // const jobsData = false;
   const jobsData: JobResponse = await job.json();
-  // console.log(jobsData);
+  // console.log(jobsData.degreeLevel.length);
 
   return (
     <div className="bg-slate-50">
@@ -43,10 +84,10 @@ export default async function Home() {
                 Stay Updated with Latest <br />
                 Kerala PSC notifications
               </h1>
-              <p className="text-center mt-2 font-light px-2 md:text-xl lg:text-2xl">
+              <h2 className="text-center mt-2 font-light px-2 md:text-xl lg:text-2xl">
                 Your one-stop destination for all Kerala Public Service
                 Commision job alerts
-              </p>
+              </h2>
               <div className="flex justify-center mt-5">
                 {/* <Button
                   className={buttonVariants({
@@ -77,9 +118,19 @@ export default async function Home() {
                 {/* {dummyData.slice(0, 8).map((job, index) => (
                   <PostCard key={index} {...job} />
                 ))} */}
-                {jobsData.data.map((job, index) => (
-                  <PostCard key={index} job={job} />
-                ))}
+                {jobsData
+                  ? jobsData.latestJobs?.map((job, index) => (
+                      <PostCard key={index} job={job} />
+                    ))
+                  : Array.from({ length: 8 }).map((_ /*_item*/, index) => (
+                      <div className="flex flex-col space-y-3" key={index}>
+                        <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+                        <div className="space-y-2">
+                          <Skeleton className="h-4 w-[250px]" />
+                          <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                      </div>
+                    ))}
               </div>
             </div>
             <div className="flex py-2 border-b justify-center items-center">
@@ -110,7 +161,7 @@ export default async function Home() {
             <span className="text-green-600 font-semibold underline">
               Kerala PSC Jobs{" "}
             </span>
-            opening, ensuring you never miss an oppertunity.
+            openings, ensuring you never miss an opportunity.
           </h3>
           <div className="border-b" />
         </MaxWidthWrapper>
@@ -226,7 +277,7 @@ const whyChooseDummyData = [
   {
     title: "Verified Job Listing",
     description:
-      "All Jobs are sourced directly from offical Kerala PSC website",
+      "All Jobs are sourced directly from official Kerala PSC website",
     icon: (
       <ShieldCheck
         size={80}
@@ -237,7 +288,7 @@ const whyChooseDummyData = [
   {
     title: "User-friendly Interface",
     description:
-      "Easily nagivate and find the information you need, hassle free",
+      "Easily navigate and find the information you need, hassle free",
     icon: (
       <MonitorSmartphone
         size={80}
@@ -247,7 +298,7 @@ const whyChooseDummyData = [
   },
   {
     title: "Dedicated Support",
-    description: "Our team is here to assit you with any questions or issues",
+    description: "Our team is here to assist you with any questions or issues",
     icon: (
       <CircleHelp
         size={80}

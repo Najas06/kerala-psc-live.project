@@ -1,9 +1,11 @@
 // components/PostCard.tsx
+import Link from "next/link";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Job } from "@/types/type"; // Import the Job type
 
-const PostCard = ({ job }: { job: Job }) => { // Accept a 'job' prop of type Job
+const PostCard = ({ job }: { job: Job }) => {
+  // Accept a 'job' prop of type Job
   const { postName, jobDescription, imageUrl, lastDate, _id } = job; // Destructure directly from 'job'
 
   return (
@@ -25,13 +27,15 @@ const PostCard = ({ job }: { job: Job }) => { // Accept a 'job' prop of type Job
         <p className="text-sm mt-2 text-red-600">
           <strong>Last Date:</strong> {lastDate}
         </p>
-        <Button
-          className="mt-6 bg-slate-200 text-green-600 w-full text-sm font-medium hover:text-white"
-          // You'll likely want to wrap this Button in a Link component for navigation
-          // For example: <Link href={`/jobs/${_id}`}><Button>View Details</Button></Link>
-        >
-          View Details
-        </Button>
+        <Link href={`/jobs/${_id}`}>
+          <Button
+            className="mt-6 bg-slate-200 text-green-600 w-full text-sm font-medium hover:text-white"
+            // You'll likely want to wrap this Button in a Link component for navigation
+            // For example: <Link href={`/jobs/${_id}`}><Button>View Details</Button></Link>
+          >
+            View Details
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );

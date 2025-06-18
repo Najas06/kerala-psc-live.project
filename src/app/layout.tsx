@@ -11,11 +11,45 @@ const workSans = localFont({
   weight: "100 900",
 });
 
+<meta
+  name="keywords"
+  content="Kerala PSC jobs, PSC notification 2025, SSLC jobs Kerala, 12th pass jobs Kerala, degree government jobs"
+/>;
+
 export const metadata: Metadata = {
-  title: "Kerala PSC Live - Jobs Alerts",
+  title: "Kerala PSC Live - Jobs Notifications & Alerts 2025",
   description:
     "Get the latest Kerala PSC Jobs alerts, live notifications, and exam updates in one place. stay a head with PSC Job posts and applications links.",
-  keywords: ["Kerala Psc live", "Kerala psc exams 2025", "Kerala psc jobs"],
+  keywords: [
+    "Kerala PSC jobs",
+    "Kerala PSC notification 2025",
+    "10th pass jobs Kerala",
+    "12th pass jobs Kerala",
+    "Degree jobs Kerala",
+    "Post Graduation jobs Kerala",
+    "PSC live updates",
+    "Kerala Government jobs",
+    "PSC alerts",
+    "Kerala PSC articles",
+    "Degree jobs Kerala",
+    "PSC latest news",
+    "Kerala PSC Live",
+  ],
+  openGraph: {
+    title: "Kerala PSC Live - Jobs Notifications & Alerts 2025",
+    description:
+      "Get the latest Kerala PSC Jobs alerts, live notifications, and exam updates in one place. stay a head with PSC Job posts and applications links.",
+    url: "keralapsclive.com",
+    siteName: "Kerala PSC Live",
+    images: [
+      {
+        url: "https://wjgczpg1md.ufs.sh/f/IpV2ESqqMQ4eyE6fSwhESegmW9ClBNc5i7OGp3V2z8KMqrRd",
+        width: 800,
+        height: 600,
+        alt: "Kerala PSC Live",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
