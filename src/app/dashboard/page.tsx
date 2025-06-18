@@ -30,6 +30,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  console.log(user);
+  console.log("SERVER USER EMAIL:", user?.email);
+  console.log("SERVER ADMIN EMAIL:", process.env.ADMIN_EMAIL);
+
   if (user?.email !== process.env.ADMIN_EMAIL) {
     redirect("/");
   }
@@ -40,7 +44,7 @@ export default async function Page() {
   const job = await fetch(`${baseUrl}/api/jobs`, {
     cache: "no-cache",
   });
-  const jobsData = await job.json();  
+  const jobsData = await job.json();
 
   // console.log(jobsData);
 
