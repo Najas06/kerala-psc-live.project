@@ -5,7 +5,8 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import PostCard from "@/components/PostCard";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { JobResponse } from "@/types/type";
+import dbConnect from "@/lib/db";
+import Job from "@/lib/models/job";
 import {
   CircleHelp,
   ClockFading,
@@ -52,15 +53,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
-  const job = await fetch(`${baseUrl}/api/jobs`, {
-    cache: "no-cache",
-  });
-  // const jobsData = false;
-  const jobsData: JobResponse = await job.json();
-  // console.log(jobsData.degreeLevel.length);
+  await dbConnect();
+
+  const latestJobs = await Job.find().sort({ createdAt: -1 }).limit(8);
 
   return (
     <div className="bg-slate-50">
@@ -118,8 +113,8 @@ export default async function Home() {
                 {/* {dummyData.slice(0, 8).map((job, index) => (
                   <PostCard key={index} {...job} />
                 ))} */}
-                {jobsData
-                  ? jobsData.latestJobs?.map((job, index) => (
+                {latestJobs
+                  ? latestJobs?.map((job, index) => (
                       <PostCard key={index} job={job} />
                     ))
                   : Array.from({ length: 8 }).map((_ /*_item*/, index) => (
