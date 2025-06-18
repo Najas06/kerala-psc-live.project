@@ -17,7 +17,7 @@ import {
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { File, Newspaper, Users } from "lucide-react";
 import { Metadata } from "next";
-// import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -30,9 +30,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  console.log(user);
-  console.log("SERVER USER EMAIL:", user?.email);
-  console.log("SERVER ADMIN EMAIL:", process.env.ADMIN_EMAIL);
+  const isAdmin = user?.email === process.env.ADMIN_EMAIL;
+  // console.log(isAdmin);
+
+  if (!isAdmin) return redirect("/");
 
   // if (user?.email !== process.env.ADMIN_EMAIL) {
   //   redirect("/");

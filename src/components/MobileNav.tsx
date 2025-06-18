@@ -40,7 +40,7 @@ const LINKS = [
 ];
 
 interface MobileNavProps {
-  user: KindeUser; // Kinde user object (pass from server component)
+  user: KindeUser | null; // Kinde user object (pass from server component)
   isAdmin: boolean; // isAdmin status (pass from server component)
 }
 

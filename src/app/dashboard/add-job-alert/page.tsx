@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 export default async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  if (user?.email !== process.env.ADMIN_EMAIL) {
-    redirect("/");
-  }
+  const isAdmin = user?.email === process.env.ADMIN_EMAIL;
+  // console.log(isAdmin);
+
+  if (!isAdmin) return redirect("/");
   return <AddJobForm />;
 }
