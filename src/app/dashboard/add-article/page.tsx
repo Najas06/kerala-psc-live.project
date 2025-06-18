@@ -1,9 +1,12 @@
-import React from 'react'
+import AddArticleForm from "@/components/AddArticleForm";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+export default async function page() {
+  const { getUser } = await getKindeServerSession();
+  const user = await getUser();
+  if (user?.email !== process.env.ADMIN_EMAIL) {
+    redirect("/");
+  }
+  return <AddArticleForm />;
 }
-
-export default page
