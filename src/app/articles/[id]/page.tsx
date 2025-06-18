@@ -10,9 +10,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import ArticleShareButtons from "@/components/ArticleShareButtons";
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 type Props = {
   params: {
     id: string;
@@ -46,7 +45,7 @@ export default async function page({ params }: Props) {
   });
   const { data }: SingleArticleResponse = await res.json();
   const article: Article = data;
-  //   console.log(article);
+//   console.log(article);
   const publishedDate = article.createdAt
     ? new Date(article.createdAt).toLocaleDateString("en-IN", {
         year: "numeric",

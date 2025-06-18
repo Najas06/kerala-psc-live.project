@@ -34,9 +34,8 @@ export default async function Page() {
     redirect("/");
   }
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
   // JOBS Data Fetching
   const job = await fetch(`${baseUrl}/api/jobs`, {
     cache: "no-cache",
