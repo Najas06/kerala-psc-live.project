@@ -34,9 +34,9 @@ export default async function Page() {
   console.log("SERVER USER EMAIL:", user?.email);
   console.log("SERVER ADMIN EMAIL:", process.env.ADMIN_EMAIL);
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
-    redirect("/");
-  }
+  // if (user?.email !== process.env.ADMIN_EMAIL) {
+  //   redirect("/");
+  // }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
