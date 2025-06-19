@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 // import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -15,6 +17,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { File, Newspaper, Users } from "lucide-react";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -29,15 +32,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user: KindeUser | null = await getUser();
   const isAdmin = user?.email === process.env.ADMIN_EMAIL;
   // console.log(isAdmin);
 
+  console.log("User email:", user?.email || "User not logged in");
+  console.log("Admin email from env:", process.env.ADMIN_EMAIL);
+
   if (!isAdmin) return redirect("/");
 
-  // if (user?.email !== process.env.ADMIN_EMAIL) {
-  //   redirect("/");
-  // }
+  if (user?.email !== process.env.ADMIN_EMAIL) {
+    redirect("/");
+  }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 

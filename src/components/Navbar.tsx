@@ -5,11 +5,18 @@ import { buttonVariants } from "./ui/button";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { User } from "lucide-react";
 import MobileNav from "./MobileNav";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
 const Navbar = async () => {
   const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user: KindeUser | null = await getUser();
+
   const isAdmin = user?.email === process.env.ADMIN_EMAIL;
+
+//   console.log(user);
+  
+// console.log("User email:", user?.email);
+// console.log("Admin email from env:", process.env.ADMIN_EMAIL);
   return (
     <nav className="sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
