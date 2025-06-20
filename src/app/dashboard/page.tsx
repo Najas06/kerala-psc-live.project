@@ -16,11 +16,11 @@ import {
   // SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+
 import { File, Newspaper, Users } from "lucide-react";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { auth } from "../../../auth";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -31,31 +31,22 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const { getUser } = getKindeServerSession();
-  const user: KindeUser | null = await getUser();
-  const isAdmin = user?.email === process.env.ADMIN_EMAIL;
-  // console.log(isAdmin);
-
-  console.log("User email:", user?.email || "User not logged in");
-  console.log("Admin email from env:", process.env.ADMIN_EMAIL);
-
+ const session = await auth();
+   const isAdmin = session?.user?.email === process.env.ADMIN_EMAIL;
   if (!isAdmin) return redirect("/");
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (session?.user?.email !== process.env.ADMIN_EMAIL) {
     redirect("/");
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-  // JOBS Data Fetching
   const job = await fetch(`${baseUrl}/api/jobs`, {
     cache: "no-cache",
   });
   const jobsData = await job.json();
 
-  // console.log(jobsData);
 
-  // SUBSCRIBERS Data Fetching
   const subscriber = await fetch(`${baseUrl}/api/subscribe`, {
     cache: "no-cache",
   });

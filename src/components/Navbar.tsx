@@ -1,22 +1,18 @@
 import React from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { User } from "lucide-react";
 import MobileNav from "./MobileNav";
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { auth } from "../../auth";
+import SignIn from "./sign-in";
+import SignOut from "./sign-out";
+import { buttonVariants } from "./ui/button";
 
 const Navbar = async () => {
-  const { getUser } = getKindeServerSession();
-  const user: KindeUser | null = await getUser();
+  const session = await auth();
+  const isAdmin = session?.user?.email === process.env.ADMIN_EMAIL;
 
-  const isAdmin = user?.email === process.env.ADMIN_EMAIL;
 
-//   console.log(user);
-  
-// console.log("User email:", user?.email);
-// console.log("Admin email from env:", process.env.ADMIN_EMAIL);
   return (
     <nav className="sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -40,18 +36,9 @@ const Navbar = async () => {
 
           {/* authication buttons */}
           <div className="h-full flex items-center space-x-4">
-            {user ? (
+            {session?.user ? (
               <>
-                <Link
-                  href="/api/auth/logout"
-                  className={buttonVariants({
-                    size: "sm",
-                    variant: "ghost",
-                    className: "max-sm:hidden",
-                  })}
-                >
-                  Sign out
-                </Link>
+                <SignOut/>
                 {isAdmin && (
                   <>
                     <Link
@@ -65,9 +52,9 @@ const Navbar = async () => {
                   </>
                 )}
 
-                {user?.picture ? (
+                {session?.user?.image ? (
                   <img
-                    src={user?.picture}
+                    src={session?.user?.image}
                     alt="user photo"
                     className="rounded-full object-cover h-10 w-10"
                   />
@@ -77,33 +64,15 @@ const Navbar = async () => {
               </>
             ) : (
               <>
-                <Link
-                  href="/api/auth/register"
-                  className={buttonVariants({
-                    size: "sm",
-                    variant: "secondary",
-                  })}
-                >
-                  Sign up
-                </Link>
-
-                <Link
-                  href="/api/auth/login"
-                  className={buttonVariants({
-                    size: "sm",
-                  })}
-                >
-                  Login
-                </Link>
+               
+                <SignIn/>
+               
               </>
             )}
             <div className="md:hidden">
-              {/* Show only on medium screens and smaller */}
-              <MobileNav user={user} isAdmin={isAdmin} />{" "}
-              {/* Pass user and isAdmin */}
+              <MobileNav user={session?.user} isAdmin={isAdmin}/>
             </div>
           </div>
-          {/* Mobile Navigation (Hamburger Menu) - Only shown on small screens */}
         </div>
       </MaxWidthWrapper>
     </nav>

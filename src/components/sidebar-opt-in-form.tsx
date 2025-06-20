@@ -7,14 +7,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 // import { SidebarInput } from "@/components/ui/sidebar";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
-// import { redirect } from "next/navigation";
+import { auth } from "../../auth";
+import { redirect } from "next/navigation";
 
 export async function SidebarOptInForm() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
+  const isAdmin = session?.user?.email === process.env.ADMIN_EMAIL;
 
+  if (!isAdmin) return redirect("/");
   // console.log(user);
 
   return (
@@ -22,9 +24,9 @@ export async function SidebarOptInForm() {
       <form>
         <CardHeader className="p-4 pb-0">
           <CardTitle className="text-sm flex items-center justify-between">
-            <p>{`Hi ${user?.given_name} 👌`}</p>
+            <p>{`Hi ${user?.name} 👌`}</p>
             <img
-              src={user?.picture ? user.picture : ""}
+              src={user?.image ? user.image : ""}
               alt="admin icon"
               className="rounded-full w-10 h-10 object-cover"
             />

@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, User } from "lucide-react"; // Import Menu and X icons from Lucide
+import { Menu, User as UserIcon } from "lucide-react"; // Alias User from lucide-react to UserIcon
 import Link from "next/link";
 import {
   Sheet,
@@ -12,7 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"; // Assuming you have shadcn/ui Sheet component
 import { Button, buttonVariants } from "@/components/ui/button"; // Assuming you have shadcn/ui Button
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { User } from "next-auth"; // This User is the type from NextAuth.js
 
 // Define the LINKS array here, or pass it as a prop if it's dynamic
 // For simplicity, defining it here for now.
@@ -40,8 +40,8 @@ const LINKS = [
 ];
 
 interface MobileNavProps {
-  user: KindeUser | null; // Kinde user object (pass from server component)
-  isAdmin: boolean; // isAdmin status (pass from server component)
+  user?: User | undefined; // Now this 'User' correctly refers to the NextAuth.js User type
+  isAdmin?: boolean | null; // isAdmin status (pass from server component)
 }
 
 export default function MobileNav({ user, isAdmin }: MobileNavProps) {
@@ -101,16 +101,19 @@ export default function MobileNav({ user, isAdmin }: MobileNavProps) {
                 </Link>
               )}
               <div className="flex items-center gap-2 mt-2">
-                {user?.picture ? (
+                {user?.image ? (
                   <img
-                    src={user?.picture}
+                    src={user.image} // user.image can be used directly after user?.image check
                     alt="user photo"
                     className="rounded-full object-cover h-10 w-10"
                   />
                 ) : (
-                  <User className="text-green-600 h-10 w-10" />
+                  <UserIcon className="text-green-600 h-10 w-10" /> 
                 )}
-                <span className="font-medium text-gray-800">{user.email}</span>
+                {/* Add a check for user.email as it's optional in NextAuth.js User type */}
+                {user.email && (
+                    <span className="font-medium text-gray-800">{user.email}</span>
+                )}
               </div>
             </div>
           ) : (

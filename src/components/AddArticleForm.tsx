@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { toast } from "sonner";
+import { SidebarTrigger } from "./ui/sidebar";
 
 // Dynamically import MDX editor to prevent SSR issues and ensure client-side rendering
 const MdxEditor = dynamic(() => import("@/components/editor/MdxEditor"), {
@@ -106,6 +107,7 @@ export default  function AddArticleForm() {
 
   return (
     <Form {...form}>
+      <SidebarTrigger className="ml-4" />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="px-3 space-y-8 max-w-5xl w-full mx-auto py-10 tracking-tighter"

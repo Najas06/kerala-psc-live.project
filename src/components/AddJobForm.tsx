@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { SidebarTrigger } from "./ui/sidebar";
 
 
 const formSchema = z.object({
@@ -118,6 +119,7 @@ export default  function AddJobForm() {
 
   return (
     <Form {...form}>
+      <SidebarTrigger className="ml-4" />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className=" px-3 space-y-8 max-w-5xl w-full mx-auto py-10 tracking-tighter"
