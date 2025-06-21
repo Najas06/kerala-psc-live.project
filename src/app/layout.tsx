@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "Kerala PSC Live",
     images: [
       {
-        url: "https://wjgczpg1md.ufs.sh/f/IpV2ESqqMQ4eyE6fSwhESegmW9ClBNc5i7OGp3V2z8KMqrRd",
+        url: "https://wjgczpg1md.ufs.sh/f/IpV2ESqqMQ4e1MMQUojK2iKBQhkSjOu7wH6rqTpJAaFgeYt0",
         width: 800,
         height: 600,
         alt: "Kerala PSC Live",
