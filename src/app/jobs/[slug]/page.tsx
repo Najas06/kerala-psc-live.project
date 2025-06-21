@@ -48,7 +48,7 @@ const page = async ({ params }: Props) => {
   const job: Job = data;
 
   return (
-    <div className="bg-slate-50">
+    <div>
       <section className="my-10">
         <MaxWidthWrapper>
           <div>

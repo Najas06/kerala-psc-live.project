@@ -9,7 +9,7 @@ const PostCard = ({ job }: { job: Job }) => {
   const { postName, jobDescription, imageUrl, lastDate, _id } = job; // Destructure directly from 'job'
 
   return (
-    <Card className="w-[290px] h-[400px] rounded-xl shadow-md flex flex-col justify-between">
+    <Card className="w-[300px] h-[380px]  rounded-xl shadow-md flex flex-col justify-between">
       <div className="flex justify-center ">
         <img
           src={imageUrl ? imageUrl : "/bgBanner.jpg"} // Use imageUrl from the job data
@@ -17,9 +17,9 @@ const PostCard = ({ job }: { job: Job }) => {
           className="w-full h-[200px] object-cover rounded-t-xl"
         />
       </div>
-      <CardContent className=" px-3 pb-6 ">
-        <h2 className="text-lg font-semibold ">
-          {postName.slice(0, 25).concat("...")}
+      <CardContent className=" px-3 pb-6">
+        <h2 className="text-base font-semibold ">
+          {postName.slice(0, 30).concat("...")}
         </h2>
         <p className="text-sm tracking-tighter text-gray-600">
           {jobDescription.slice(0, 65).concat("...")}

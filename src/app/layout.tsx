@@ -59,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${workSans.variable}`}>
-      <body className={` antialiased`}>
+      <body className={` antialiased bg-slate-50`}>
         <Navbar />
         {children}
         <Footer />

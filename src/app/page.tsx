@@ -6,6 +6,7 @@ import PostCard from "@/components/PostCard";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import dbConnect from "@/lib/db";
+import Article from "@/lib/models/article";
 import Job from "@/lib/models/job";
 import {
   CircleHelp,
@@ -57,6 +58,8 @@ export default async function Home() {
 
   const latestJobs = await Job.find().sort({ createdAt: -1 }).limit(8);
 
+  const latestArticles = await Article.find().sort({ createdAt: -1 }).limit(3);
+
   return (
     <div className="bg-slate-50">
       {/* // banner section */}
@@ -102,14 +105,14 @@ export default async function Home() {
       <section>
         <MaxWidthWrapper>
           <div className="py-5 md:py-10">
-            <h1 className="text-sm md:text-xl tracking-tighter  px-2">
+            <h1 className="text-xl tracking-tighter px-2">
               New Jobs Alert{" "}
               <span className="text-green-600 underline font-semibold">{`${new Date().toDateString()}`}</span>
             </h1>
 
             {/* card section  */}
             <div className="flex justify-center">
-              <div className="my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
+              <div className="my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5  ">
                 {/* {dummyData.slice(0, 8).map((job, index) => (
                   <PostCard key={index} {...job} />
                 ))} */}
@@ -128,6 +131,17 @@ export default async function Home() {
                     ))}
               </div>
             </div>
+            <Link href={"https://t.me/keralapsclive0612"} target="_blank">
+              <div className="flex justify-center gap-x-3 items-center py-5  max-w-[300px] mx-auto font-semibold uppercase rounded-full">
+                Join Our Community{" "}
+                <img
+                  src="/telegram-icon.png"
+                  alt="telegram icon"
+                  className="w-10"
+                />{" "}
+                {/* <img src="/whatsapp-icon.png" alt="whatsapp" className="w-10" /> */}
+              </div>
+            </Link>
             <div className="flex py-2 border-b justify-center items-center">
               <Link href="/jobs" className={buttonVariants({ size: "lg" })}>
                 View All Jobs
@@ -177,8 +191,13 @@ export default async function Home() {
             <div className=" my-5">
               {/* article card components items  */}
 
-              {dummyData.slice(0, 4).map((item, index) => (
-                <ArticleCard key={index} {...item} />
+              {latestArticles.map((item, index) => (
+                <ArticleCard
+                  key={index}
+                  imageUrl={item.imageUrl}
+                  metaDescription={item.metaDescription}
+                  title={item.title}
+                />
               ))}
 
               <div className="flex py-2  justify-center items-center">
@@ -197,65 +216,6 @@ export default async function Home() {
   );
 }
 
-const dummyData = [
-  {
-    title: "Assistant Prison Officer",
-    description:
-      "Direct recruitment to the Kerala Prisons Department. Physical test required.",
-    lastDate: "2025-06-30",
-  },
-  {
-    title: "Junior Health Inspector Grade II",
-    description:
-      "Vacancies under the Health Services Department. Must have Health Inspector diploma.",
-    lastDate: "2025-07-05",
-  },
-  {
-    title: "Lower Division Clerk (LDC)",
-    description:
-      "District-wise recruitment. SSLC pass required. Typing speed desirable.",
-    lastDate: "2025-06-25",
-  },
-  {
-    title: "Village Field Assistant",
-    description:
-      "Recruitment under Revenue Department. Matriculation required.",
-    lastDate: "2025-07-15",
-  },
-  {
-    title: "High School Teacher (Maths) – Malayalam Medium",
-    description:
-      "Recruitment in Education Department. B.Ed and K-TET required.",
-    lastDate: "2025-06-28",
-  },
-  {
-    title: "Police Constable (Armed Police Battalion)",
-    description:
-      "Only for male candidates. Physical efficiency test mandatory.",
-    lastDate: "2025-07-01",
-  },
-  {
-    title: "Assistant Grade II – Kerala State Co-operative Bank",
-    description: "Commerce degree and computer knowledge preferred.",
-    lastDate: "2025-07-10",
-  },
-  {
-    title: "Typist Clerk / Clerk Typist",
-    description: "Typing test and knowledge of Malayalam required.",
-    lastDate: "2025-06-27",
-  },
-  {
-    title: "Lecturer in Electronics Engineering – Polytechnic Colleges",
-    description: "First class Bachelor's Degree in Engineering mandatory.",
-    lastDate: "2025-07-18",
-  },
-  {
-    title: "Staff Nurse Grade II",
-    description:
-      "GNM or BSc Nursing required. Posting under Health Department.",
-    lastDate: "2025-06-29",
-  },
-];
 
 const whyChooseDummyData = [
   {

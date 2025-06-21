@@ -44,7 +44,7 @@ export default async function Page() {
   const jobsData: JobResponse = await job.json();
   // const jobsData = false;
   return (
-    <div className="bg-slate-50">
+    <div>
       <section>
         <MaxWidthWrapper>
           <div className="tracking-tight my-8">

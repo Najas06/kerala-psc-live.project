@@ -54,7 +54,7 @@ export default async function page({ params }: Props) {
       })
     : "N/A";
   return (
-    <div className="bg-slate-50">
+    <div>
       <section className="my-10 tracking-tight">
         <MaxWidthWrapper>
           <div>

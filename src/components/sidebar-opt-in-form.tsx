@@ -1,4 +1,3 @@
-import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,9 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 // import { SidebarInput } from "@/components/ui/sidebar";
-import Link from "next/link";
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
+import SignOut from "./sign-out";
 
 export async function SidebarOptInForm() {
   const session = await auth();
@@ -35,15 +34,7 @@ export async function SidebarOptInForm() {
         </CardHeader>
         <CardContent className="grid gap-2.5 p-4">
           {/* <SidebarInput type="email" placeholder="Email" /> */}
-          <Link
-            href={"/api/auth/login"}
-            className={buttonVariants({
-              size: "sm",
-              className: "w-full",
-            })}
-          >
-            Log out 👋
-          </Link>
+          <SignOut/>
         </CardContent>
       </form>
     </Card>

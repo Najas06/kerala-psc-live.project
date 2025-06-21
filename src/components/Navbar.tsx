@@ -19,7 +19,7 @@ const Navbar = async () => {
         {/* logo */}
         <div className="flex h-14 items-center justify-between border-b border-zinc-200">
           <Link href="/" className="flex z-40">
-            <img src="/logo.png" alt="logo" className="h-12 w-full" />
+            <img src="/logo.png" alt="logo" className="h-12 w-22" />
           </Link>
 
           {/* nav links */}

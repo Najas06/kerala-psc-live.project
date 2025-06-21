@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet"; // Assuming you have shadcn/ui Sheet component
 import { Button, buttonVariants } from "@/components/ui/button"; // Assuming you have shadcn/ui Button
 import { User } from "next-auth"; // This User is the type from NextAuth.js
+import { signInAction, signOutAction } from "@/lib/actions";
 
 // Define the LINKS array here, or pass it as a prop if it's dynamic
 // For simplicity, defining it here for now.
@@ -79,16 +80,20 @@ export default function MobileNav({ user, isAdmin }: MobileNavProps) {
         <div className="mt-auto pt-6 border-t border-gray-200">
           {user ? (
             <div className="flex flex-col gap-3">
-              <Link
-                href="/api/auth/logout"
+             
+               <form
+                action={signOutAction}
+              >
+                <Button
                 className={buttonVariants({
                   variant: "ghost",
-                  className: "w-full justify-start",
+                  className: "w-full text-center",
                 })}
                 onClick={() => setIsOpen(false)}
               >
                 Sign out
-              </Link>
+              </Button>
+              </form>
               {isAdmin && (
                 <Link
                   href="/dashboard"
@@ -108,27 +113,32 @@ export default function MobileNav({ user, isAdmin }: MobileNavProps) {
                     className="rounded-full object-cover h-10 w-10"
                   />
                 ) : (
-                  <UserIcon className="text-green-600 h-10 w-10" /> 
+                  <UserIcon className="text-green-600 h-10 w-10" />
                 )}
                 {/* Add a check for user.email as it's optional in NextAuth.js User type */}
                 {user.email && (
-                    <span className="font-medium text-gray-800">{user.email}</span>
+                  <span className="font-medium text-gray-800">
+                    {user.email}
+                  </span>
                 )}
               </div>
             </div>
           ) : (
             <div className="flex flex-col gap-3">
-              <Link
-                href="/api/auth/register"
+               <form
+                action={signInAction}
+              >
+                <Button
                 className={buttonVariants({
-                  variant: "secondary",
-                  className: "w-full",
+                  variant: "default",
+                  className: "w-full text-center",
                 })}
                 onClick={() => setIsOpen(false)}
               >
-                Sign up
-              </Link>
-              <Link
+                Sign In
+              </Button>
+              </form>
+              {/* <Link
                 href="/api/auth/login"
                 className={buttonVariants({
                   className: "w-full",
@@ -136,7 +146,7 @@ export default function MobileNav({ user, isAdmin }: MobileNavProps) {
                 onClick={() => setIsOpen(false)}
               >
                 Login
-              </Link>
+              </Link> */}
             </div>
           )}
         </div>

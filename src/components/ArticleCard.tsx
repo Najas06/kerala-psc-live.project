@@ -1,15 +1,13 @@
 import React from "react";
 import { Button, buttonVariants } from "./ui/button";
 
-const ArticleCard = ({
-    title,
-    description,
-    image
-}:{
-    title: string;
-    description: string;
-    image?: string;
-}) => {
+type ArticleCardProps = {
+  title: string;
+  imageUrl : string
+  metaDescription: string;
+}
+const ArticleCard = ({title,imageUrl,metaDescription}:ArticleCardProps ) => {
+
   return (
     <div className=" border rounded shadow-lg p-3 md:p-0 flex flex-col md:grid  md:grid-cols-3 my-5">
       <div className="col-span-2">
@@ -18,10 +16,7 @@ const ArticleCard = ({
             {title}
           </h1>
           <p className="text-xs md:text-base text-black/80">
-            {description} Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Optio, aperiam dolore? Voluptatum fuga enim
-            distinctio hic doloremque. Velit error voluptate ab, temporibus
-            expedita optio ipsa sunt vel, mollitia cumque quasi.
+            {metaDescription}
           </p>
 
           <Button
@@ -36,7 +31,7 @@ const ArticleCard = ({
       </div>
       <div className="col-span-1">
         <img
-          src={image ? image : "/bgBanner.jpg"}
+          src={imageUrl ? imageUrl : "/bgBanner.jpg"}
           alt=""
           className="w-full h-[200px] md:h-[300px] rounded-md object-cover md:rounded-l-md md:rounded-r-none"
         />

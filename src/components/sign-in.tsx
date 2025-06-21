@@ -10,10 +10,11 @@ export default function SignIn() {
         await signIn("google")
       }}
     >
-      <button type="submit" className={buttonVariants({
+      <button type="submit" className={`${buttonVariants({
         size:"sm",
         variant:'default'
-      })}>Create an account 🏆</button>
+      })} max-sm:hidden`}>Create an account 🏆</button>
+    
     </form>
   )
 } 

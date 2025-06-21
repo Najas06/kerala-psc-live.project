@@ -29,7 +29,7 @@ const Footer = () => {
         {` ${new Date().getFullYear()} Kerala PSC Live. All rights reserved`}
       </p>
       <div className="flex items-center justify-evenly text-black/70 text-sm">
-        <Link href="/">Privacy Policy</Link>
+        <Link href="/privacy-policy">Privacy Policy</Link>
         <Link href="/">Terms & Conditions</Link>
         <Link href="/">Contact</Link>
       </div>
