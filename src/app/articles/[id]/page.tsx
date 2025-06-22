@@ -10,7 +10,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import ArticleShareButtons from "@/components/ArticleShareButtons";
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+import Image from "next/image";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 type Props = {
   params: {
@@ -45,7 +46,7 @@ export default async function page({ params }: Props) {
   });
   const { data }: SingleArticleResponse = await res.json();
   const article: Article = data;
-//   console.log(article);
+  //   console.log(article);
   const publishedDate = article.createdAt
     ? new Date(article.createdAt).toLocaleDateString("en-IN", {
         year: "numeric",
@@ -91,7 +92,10 @@ export default async function page({ params }: Props) {
 
       <section>
         <MaxWidthWrapper>
-          <img
+          <Image
+            width={1280}
+            height={720}
+            priority
             src={article.imageUrl}
             alt={article.title}
             className="w-full max-h-[500px] h-full object-cover rounded-md"

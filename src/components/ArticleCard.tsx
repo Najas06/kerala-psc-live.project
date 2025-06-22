@@ -1,13 +1,17 @@
 import React from "react";
 import { Button, buttonVariants } from "./ui/button";
+import Image from "next/image";
 
 type ArticleCardProps = {
   title: string;
-  imageUrl : string
+  imageUrl: string;
   metaDescription: string;
-}
-const ArticleCard = ({title,imageUrl,metaDescription}:ArticleCardProps ) => {
-
+};
+const ArticleCard = ({
+  title,
+  imageUrl,
+  metaDescription,
+}: ArticleCardProps) => {
   return (
     <div className=" border rounded shadow-lg p-3 md:p-0 flex flex-col md:grid  md:grid-cols-3 my-5">
       <div className="col-span-2">
@@ -30,9 +34,11 @@ const ArticleCard = ({title,imageUrl,metaDescription}:ArticleCardProps ) => {
         </div>
       </div>
       <div className="col-span-1">
-        <img
-          src={imageUrl ? imageUrl : "/bgBanner.jpg"}
-          alt=""
+        <Image
+          src={imageUrl || "/bgBanner.jpg"}
+          alt={title}
+          width={400}
+          height={300}
           className="w-full h-[200px] md:h-[300px] rounded-md object-cover md:rounded-l-md md:rounded-r-none"
         />
       </div>
