@@ -15,6 +15,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -67,11 +68,16 @@ export default async function Home() {
         <MaxWidthWrapper className="relative ">
           <div className="relative w-full mt-3">
             {/* Background Image */}
-            <img
-              src="/bgBanner.jpg"
-              alt="Banner"
-              className="w-full h-[250px] md:h-[400px] object-cover rounded-2xl opacity-90"
-            />
+            <div className="relative w-full h-[250px] md:h-[400px]">
+              <Image
+                src="/bgBanner.jpg"
+                alt="Kerala PSC Job Alert Banner"
+                fill
+                className="object-cover rounded-2xl opacity-90"
+                priority
+                sizes="100vw"
+              />
+            </div>
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/50 rounded-2xl" />
@@ -134,10 +140,12 @@ export default async function Home() {
             <Link href={"https://t.me/keralapsclive0612"} target="_blank">
               <div className="flex justify-center gap-x-3 items-center py-5  max-w-[300px] mx-auto font-semibold uppercase rounded-full">
                 Join Our Community{" "}
-                <img
+                <Image
+                  width={40}
+                  height={40}
                   src="/telegram-icon.png"
                   alt="telegram icon"
-                  className="w-10"
+                  className="w-10 h-10"
                 />{" "}
                 {/* <img src="/whatsapp-icon.png" alt="whatsapp" className="w-10" /> */}
               </div>
@@ -215,7 +223,6 @@ export default async function Home() {
     </div>
   );
 }
-
 
 const whyChooseDummyData = [
   {

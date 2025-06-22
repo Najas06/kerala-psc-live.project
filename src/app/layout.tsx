@@ -14,6 +14,7 @@ const workSans = localFont({
 });
 
 <meta
+
   name="keywords"
   content="Kerala PSC jobs, PSC notification 2025, SSLC jobs Kerala, 12th pass jobs Kerala, degree government jobs"
 />;
@@ -51,6 +52,11 @@ export const metadata: Metadata = {
         alt: "Kerala PSC Live",
       },
     ],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico", 
+    // apple: "/apple-touch-icon.png",
   },
 };
 
