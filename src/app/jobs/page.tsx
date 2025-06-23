@@ -9,6 +9,7 @@ type Props = {
   params: { slug: string };
 };
 
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
 
@@ -35,11 +36,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
   };
 }
+export const revalidate = 60;
 
 export default async function Page() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const job = await fetch(`${baseUrl}/api/jobs`, {
-    cache: "no-store",
+    next: { revalidate: 60 },
   });
   const jobsData: JobResponse = await job.json();
   // const jobsData = false;

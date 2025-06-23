@@ -12,6 +12,22 @@ const nextConfig = {
       },
     ],
   },
+  // async redirects() {
+  //   return[
+  //     {
+  //       source:'/',
+  //       has:[
+  //         {
+  //           type:'host',
+  //           value:'keralapsclive.com'
+  //         },
+  //       ],
+  //       destination:'https://www.keralapsclive.com/:path*',
+  //       permanent:false
+  //     }
+  //   ]
+    
+  // }
 };
 
 export default nextConfig;
