@@ -88,7 +88,7 @@ export default async function Page() {
             <GraduationCap className="text-green-600 mr-1 w-9 h-9" /> Post
             Graduation Pass
           </h2>
-          <JobTable title="Post Graduation Pass" data={jobsData.degreeLevel} />
+          <JobTable title="Post Graduation Pass" data={jobsData.postGraduateLevel} />
         </MaxWidthWrapper>
       </section>
     </div>
