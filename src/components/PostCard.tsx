@@ -19,10 +19,10 @@ const PostCard = ({ job }: { job: Job }) => {
       </div>
       <CardContent className=" px-3 pb-6">
         <h2 className="text-base font-semibold ">
-          {postName.slice(0, 30).concat("...")}
+          {postName?.slice(0, 30).concat("...")}
         </h2>
         <p className="text-sm tracking-tighter text-gray-600">
-          {jobDescription.slice(0, 65).concat("...")}
+          {jobDescription?.slice(0, 65).concat("...")}
         </p>
         <p className="text-sm mt-2 text-red-600">
           <strong>Last Date:</strong> {lastDate}

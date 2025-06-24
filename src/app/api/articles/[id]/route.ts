@@ -16,13 +16,13 @@ export async function GET(req: Request, { params }: Params) {
       data: article,
       message: "Article fetched successfully",
       status: 200,
-    });
+    }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
       success: false,
       message: "Failed to fetch article",
       status: 500,
       error
-    });
+    }, { status: 500 });
   }
 }

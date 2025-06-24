@@ -17,32 +17,14 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { toast } from "sonner";
 import { SidebarTrigger } from "./ui/sidebar";
+import articleSchema from "@/lib/validation/articleSchema";
 
 // Dynamically import MDX editor to prevent SSR issues and ensure client-side rendering
 const MdxEditor = dynamic(() => import("@/components/editor/MdxEditor"), {
   ssr: false,
 });
 
-// Define the Zod schema for article validation
-export const articleSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  imageUrl: z.string().url("Invalid image URL").min(1, "Image URL is required"),
-  author: z.string().min(1, "Author is required"),
-  metaTitle: z.string().min(1, "Meta title is required"),
-  metaDescription: z.string().min(1, "Meta description is required"),
-  metaKeywords: z
-    .string()
-    .min(1, "Meta keywords are required (comma-separated)")
-    .transform((value) =>
-      value
-        .split(",")
-        .map((kw) => kw.trim())
-        .filter(Boolean)
-    ),
-  // content field temporarily commented out for compilation in this environment
-  // Please uncomment this in your local Next.js project:
-  content: z.string().min(1, "Content is required"),
-});
+
 
 // Infer the form type from the Zod schema's output type
 type ArticleFormType = z.output<typeof articleSchema>;

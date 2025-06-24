@@ -16,8 +16,10 @@ export async function GET(req: Request, { params }: Params) {
 
     if (!job) {
       return NextResponse.json(
-        { success: false, message: "Job not found" },
-        { status: 404 }
+        { 
+          success: false,
+          message: "Job not found"
+        },{ status: 404 }
       );
     }
 
@@ -26,12 +28,15 @@ export async function GET(req: Request, { params }: Params) {
       data: job,
       message: "Job fetched successfully",
       status: 200,
-    });
+    }, { status : 200 });
   } catch (error) {
     console.error("Fetch Job Error:", error);
     return NextResponse.json(
-      { success: false, message: "Failed to fetch job", status: 500 },
-      { status: 500 }
+      { 
+        success: false,
+        message: "Failed to fetch job",
+        status: 500 
+      },{ status: 500 }
     );
   }
 }

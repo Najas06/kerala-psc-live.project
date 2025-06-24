@@ -1,28 +1,49 @@
 import dbConnect from "@/lib/db";
 import Job from "@/lib/models/job";
+import jobSchema from "@/lib/validation/jobSchema";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
     await dbConnect();
     const body = await request.json();
-    const job = await Job.create(body);
+
+    /* Using Zod validation instead of mongoose Schame validaion */ 
+    const parsed = jobSchema.safeParse(body); 
+    // i am using safeParse() it will return either success: true(return data)/false(return error) 
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Validation failed",
+          errors: parsed.error.flatten().fieldErrors, /* make an array of erros and sends response */
+          status: 400,
+        },
+        { status: 400 }
+      );
+    }
+
+    const job = await Job.create(parsed.data);
+
     return NextResponse.json({
       success: true,
       data: job,
       message: "Job created successfully",
       status: 201,
-    });
+    }, { status : 201 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
       message: "Failed to create job",
       status: 500,
-    });
+    }, { status : 500 });
   }
 }
 
+
+/* TTFB - time to first byte is 1sec */
 export async function GET() {
   try {
     await dbConnect();
@@ -52,14 +73,14 @@ export async function GET() {
       twelfthLevel,
       degreeLevel,
       postGraduateLevel,
-    });
+    }, { status : 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
       message: "Failed to fetch jobs",
       status: 500,
-    });
+    }, { status : 500 });
   }
 }
 
