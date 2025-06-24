@@ -46,9 +46,11 @@ export async function GET() {
   try {
     await dbConnect();
     const articles = await Article.find().sort({ createdAt: -1 });
+    const count = await Article.countDocuments();
     return NextResponse.json({
       success: true,
       data: articles,
+      count,
       message: "Articles fetched successfully",
       status: 200,
     }, { status: 200 });
