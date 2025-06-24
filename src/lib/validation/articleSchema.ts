@@ -8,9 +8,15 @@ const articleSchema = z.object({
   author: z.string().trim().min(1, "Author is required"),
   metaTitle: z.string().trim().min(1, "Meta title is required"),
   metaDescription: z.string().trim().min(1, "Meta description is required"),
-  metaKeywords: z
-    .array(z.string().trim().min(1, "keyword must be a non-empty string"))
-    .min(1, "Minimum 1 Meta Keyword are required"), // this is atleast 1 array is required
+  metaKeywords: z.preprocess(
+    (val) => {
+      if(typeof val === "string") {
+        return val.split(",").map(s => s.trim()).filter(Boolean);
+      }
+      return val;
+    }, z.array(z.string().trim().min(1, "keyword must be a non-empty string"))
+    .min(1, "Minimum 1 Meta Keyword are required")
+  ), // this is atleast 1 array is required
     /* .string()
     .trim().min(1, "Meta keywords are required (comma-separated)")
     .transform((value) =>

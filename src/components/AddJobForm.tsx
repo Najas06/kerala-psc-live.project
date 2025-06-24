@@ -54,7 +54,7 @@ export default  function AddJobForm() {
       eligble: "",
       // For metaKeywords, the default value should be a string because the input expects a string
       // The transform converts it to string[] AFTER validation.
-      metaKeywords: "",
+      metaKeywords: [],
     },
     // --- END DEFAULT VALUES ---
   });
