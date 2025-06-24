@@ -95,7 +95,7 @@ const LINKS = [
   },
   {
     name: "Syllabus",
-    href: "/",
+    href: "/syllabus",
   },
   {
     name: "Study Material",

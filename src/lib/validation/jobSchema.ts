@@ -18,17 +18,17 @@ const jobSchema = z.object({
   metaDescription: z.string().optional(), // Made optional, or add min(1) if required
   eligble: z.string().optional(), // Made optional, or add min(1) if required
   metaKeywords: z
-    .array(z.string().trim().min(1, "keyword must be a non-empty string"))
-    .min(1, "Minimum 1 Meta Keyword are required") // this is atleast 1 array is required
-    /* .string()
-    .trim()
-    .min(1, "Meta Keywords are required") // Ensure input string is not empty before transform
-    .transform((str) => {
-      return str
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean); // Added trim and filter for cleaner keywords
-    }), */
+  .string()
+  .min(1, "Meta Keywords are required")
+  .transform((str) =>
+    str
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)
+  )
+  .refine((arr) => arr.length > 0, {
+    message: "Minimum 1 Meta Keyword is required",
+  })
 });
 
 

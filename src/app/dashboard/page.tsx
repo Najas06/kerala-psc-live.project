@@ -31,8 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
- const session = await auth();
-   const isAdmin = session?.user?.email === process.env.ADMIN_EMAIL;
+  const session = await auth();
+  const isAdmin = session?.user?.email === process.env.ADMIN_EMAIL;
   if (!isAdmin) return redirect("/");
 
   if (session?.user?.email !== process.env.ADMIN_EMAIL) {
@@ -46,11 +46,16 @@ export default async function Page() {
   });
   const jobsData = await job.json();
 
-
   const subscriber = await fetch(`${baseUrl}/api/subscribe`, {
     cache: "no-cache",
   });
   const subscribersData = await subscriber.json();
+
+  const article = await fetch(`${baseUrl}/api/articles`, {
+    cache: "no-cache",
+  });
+
+  const articlesData = await article.json();
   return (
     <SidebarInset className="border w-full">
       <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 w-full">
@@ -125,7 +130,8 @@ export default async function Page() {
                 </span>
               </h3>
               <p className="my-5 text-3xl md:text-5xl font-semibold text-center">
-                10 <span className="">Articles</span>
+                {articlesData.count > 0 ? articlesData.count : 0}{" "}
+                <span className="">Articles</span>
               </p>
 
               <div>
