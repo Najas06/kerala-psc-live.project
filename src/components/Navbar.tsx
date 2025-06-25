@@ -7,6 +7,7 @@ import { auth } from "../../auth";
 import SignIn from "./sign-in";
 import SignOut from "./sign-out";
 import { buttonVariants } from "./ui/button";
+import Image from "next/image";
 
 const Navbar = async () => {
   const session = await auth();
@@ -19,7 +20,7 @@ const Navbar = async () => {
         {/* logo */}
         <div className="flex h-14 items-center justify-between border-b border-zinc-200">
           <Link href="/" className="flex z-40">
-            <img src="/logo.png" alt="logo" className="h-12 w-22" />
+            <Image width={100} height={40} src="/logo.png" alt="logo" className="h-12 w-22" />
           </Link>
 
           {/* nav links */}
@@ -53,10 +54,12 @@ const Navbar = async () => {
                 )}
 
                 {session?.user?.image ? (
-                  <img
+                  <Image
+                    width={40}
+                    height={40}
                     src={session?.user?.image}
                     alt="user photo"
-                    className="rounded-full object-cover h-10 w-10"
+                    className="rounded-full object-cover "
                   />
                 ) : (
                   <User className="text-green-600 h-10 w-10" />
@@ -92,7 +95,7 @@ const LINKS = [
   },
   {
     name: "Syllabus",
-    href: "/",
+    href: "/syllabus",
   },
   {
     name: "Study Material",

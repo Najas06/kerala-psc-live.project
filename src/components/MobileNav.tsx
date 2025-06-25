@@ -14,6 +14,7 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button"; // Assuming you have shadcn/ui Button
 import { User } from "next-auth"; // This User is the type from NextAuth.js
 import { signInAction, signOutAction } from "@/lib/actions";
+import Image from "next/image";
 
 // Define the LINKS array here, or pass it as a prop if it's dynamic
 // For simplicity, defining it here for now.
@@ -28,7 +29,7 @@ const LINKS = [
   },
   {
     name: "Syllabus",
-    href: "/",
+    href: "/syllabus",
   },
   {
     name: "Study Material",
@@ -107,7 +108,9 @@ export default function MobileNav({ user, isAdmin }: MobileNavProps) {
               )}
               <div className="flex items-center gap-2 mt-2">
                 {user?.image ? (
-                  <img
+                  <Image
+                    width={40}
+                    height={40}
                     src={user.image} // user.image can be used directly after user?.image check
                     alt="user photo"
                     className="rounded-full object-cover h-10 w-10"

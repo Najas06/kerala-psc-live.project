@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Job } from "@/types/type"; // Import the Job type
+import Image from "next/image";
 
 const PostCard = ({ job }: { job: Job }) => {
   // Accept a 'job' prop of type Job
@@ -11,10 +12,14 @@ const PostCard = ({ job }: { job: Job }) => {
   return (
     <Card className="w-[300px] h-[380px]  rounded-xl shadow-md flex flex-col justify-between">
       <div className="flex justify-center ">
-        <img
-          src={imageUrl ? imageUrl : "/bgBanner.jpg"} // Use imageUrl from the job data
-          alt={postName} // Good practice to use meaningful alt text
-          className="w-full h-[200px] object-cover rounded-t-xl"
+        <Image
+          src={imageUrl || "/bgBanner.jpg"}
+          alt={postName}
+          width={300}
+          height={200}
+          className="object-cover w-full h-[200px] rounded-t-xl"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 300px"
         />
       </div>
       <CardContent className=" px-3 pb-6">

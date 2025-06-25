@@ -9,6 +9,7 @@ import {
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
 import SignOut from "./sign-out";
+import Image from "next/image";
 
 export async function SidebarOptInForm() {
   const session = await auth();
@@ -24,17 +25,20 @@ export async function SidebarOptInForm() {
         <CardHeader className="p-4 pb-0">
           <CardTitle className="text-sm flex items-center justify-between">
             <p>{`Hi ${user?.name} 👌`}</p>
-            <img
-              src={user?.image ? user.image : ""}
+            <Image
+              width={40}
+              height={40}
+              src={user?.image || "/default-avatar.png"}
               alt="admin icon"
               className="rounded-full w-10 h-10 object-cover"
+              loading="lazy"
             />
           </CardTitle>
           <CardDescription>{user?.email}</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-2.5 p-4">
           {/* <SidebarInput type="email" placeholder="Email" /> */}
-          <SignOut/>
+          <SignOut />
         </CardContent>
       </form>
     </Card>

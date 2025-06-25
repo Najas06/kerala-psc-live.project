@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const workSans = localFont({
   src: "./fonts/WorkSans-VariableFont_wght.ttf",
@@ -52,8 +52,15 @@ export const metadata: Metadata = {
       },
     ],
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    // apple: "/apple-touch-icon.png",
+  },
+  verification: {
+    google: "NwpIyGWgLhpWhyhbryD1doDOr-QuRLt_VbhCJN9vOmc",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -66,7 +73,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <Toaster richColors position="top-center" />
-         <SpeedInsights />
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>

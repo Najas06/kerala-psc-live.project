@@ -41,6 +41,9 @@ const jobSchema = z.object({
         .map((s) => s.trim())
         .filter(Boolean); // Added trim and filter for cleaner keywords
     }), */
+
+
+
 });
 
 
