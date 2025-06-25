@@ -62,7 +62,7 @@ export default  function AddJobForm() {
   async function onSubmit(values: z.output<typeof jobSchema>) {
     setIsSubmitting(true); // Set submitting to true
     try {
-      console.log("Submitting values:", values); // Log transformed values
+      // console.log("Submitting values:", values); // Log transformed values
       const res = await fetch("/api/jobs", {
         method: "POST",
         headers: {

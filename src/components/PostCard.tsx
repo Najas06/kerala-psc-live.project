@@ -8,6 +8,7 @@ import Image from "next/image";
 const PostCard = ({ job }: { job: Job }) => {
   // Accept a 'job' prop of type Job
   const { postName, jobDescription, imageUrl, lastDate, _id } = job; // Destructure directly from 'job'
+  const safeTitle = postName ?? "";
 
   return (
     <Card className="w-[300px] h-[380px]  rounded-xl shadow-md flex flex-col justify-between">
@@ -24,7 +25,7 @@ const PostCard = ({ job }: { job: Job }) => {
       </div>
       <CardContent className=" px-3 pb-6">
         <h2 className="text-base font-semibold ">
-          {postName?.slice(0, 30).concat("...")}
+          {safeTitle.length > 25 ? safeTitle.slice(0, 30).concat("...") : safeTitle}
         </h2>
         <p className="text-sm tracking-tighter text-gray-600">
           {jobDescription?.slice(0, 65).concat("...")}

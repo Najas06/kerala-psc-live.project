@@ -51,7 +51,7 @@ export default  function AddArticleForm() {
   const onSubmit = async (values: ArticleFormType) => {
     setIsSubmitting(true);
     try {
-      console.log("Submitting article values:", values);
+      // console.log("Submitting article values:", values);
 
       const res = await fetch("/api/articles", {
         method: "POST",
