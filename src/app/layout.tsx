@@ -74,7 +74,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <Toaster richColors position="top-center" />
-        <GoogleTagManager gtmId="W6Z97SGH"/> 
+        <GoogleTagManager gtmId="GTM-W6Z97SGH"/> 
         <SpeedInsights />
         <Analytics />
       </body>
