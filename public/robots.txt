@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://keralapsclive.com
+Host: https://www.keralapsclive.com
 
 # Sitemaps
-Sitemap: https://keralapsclive.com/sitemap.xml
+Sitemap: https://www.keralapsclive.com/sitemap.xml
