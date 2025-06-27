@@ -47,8 +47,23 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://wjgczpg1md.ufs.sh/f/IpV2ESqqMQ4e1MMQUojK2iKBQhkSjOu7wH6rqTpJAaFgeYt0",
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 630,
+        alt: "Kerala PSC Live",
+      },
+    ],
+    type: "website",
+  },
+  twitter:{
+    card:"summary_large_image",
+    title:"Kerala PSC Live - Jobs Notifications & Alerts 2025",
+    description:
+      "Get the latest Kerala PSC Jobs alerts, live notifications, and exam updates in one place. stay a head with PSC Job posts and applications links.",
+    images: [
+      {
+        url: "https://wjgczpg1md.ufs.sh/f/IpV2ESqqMQ4e1MMQUojK2iKBQhkSjOu7wH6rqTpJAaFgeYt0",
+        width: 1200,
+        height: 630,
         alt: "Kerala PSC Live",
       },
     ],
