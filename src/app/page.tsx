@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Kerala PSC Live - Jobs Notifications & Alerts 2025",
     description:
       "Get the latest Kerala PSC Jobs alerts, live notifications, and exam updates in one place. stay a head with PSC Job posts and applications links.",
-    url: "keralapsclive.com",
+    url: "www.keralapsclive.com",
     siteName: "Kerala PSC Live",
     images: [
       {
