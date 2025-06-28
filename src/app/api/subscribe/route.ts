@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     await dbConnect();
-    const subscribers = await Subscriber.find();
+    const subscribers = await Subscriber.find().sort({ createdAt: -1 }).limit(100);
     const count = await Subscriber.countDocuments();
     return NextResponse.json({
       success: true,

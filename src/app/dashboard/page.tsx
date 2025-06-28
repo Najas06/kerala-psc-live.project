@@ -21,6 +21,8 @@ import { File, Newspaper, Users } from "lucide-react";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "../../../auth";
+import { SubscriberResponse } from "@/types/type";
+import { UsersTable } from "@/components/UsersTable";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -49,7 +51,7 @@ export default async function Page() {
   const subscriber = await fetch(`${baseUrl}/api/subscribe`, {
     cache: "no-cache",
   });
-  const subscribersData = await subscriber.json();
+  const subscribersData:SubscriberResponse = await subscriber.json();
 
   const article = await fetch(`${baseUrl}/api/articles`, {
     cache: "no-cache",
@@ -140,6 +142,14 @@ export default async function Page() {
                 </p>
               </div>
             </Card>
+          </div>
+        </div>
+        <div className="px-4 my-5">
+          <h2 className="text-2xl font-medium text-neutral-800">
+            Recently Subscribed Users
+          </h2>
+          <div className="my-3">
+            <UsersTable suscribersData={subscribersData.data} />
           </div>
         </div>
       </div>

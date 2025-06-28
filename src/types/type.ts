@@ -73,3 +73,27 @@ export interface SingleArticleResponse {
   message: string;
   status: number;
 }
+
+
+export interface Subscriber {
+  _id: string;
+  email: string;
+  createdAt?: string;
+  updatedAt?: string;
+  __v: number;
+}
+
+export interface SubscriberResponse {
+  success: boolean;
+  data: Subscriber[];
+  count: number;
+  message: string;
+  status: number;
+}
+
+export interface SingleSubscriberResponse {
+  success: boolean;
+  data: Subscriber;
+  message: string;
+  status: number;
+}
