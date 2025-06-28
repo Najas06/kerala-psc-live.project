@@ -17,7 +17,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Resend's 'to' array limit is typically 50. Setting it to 50 is safe.
 const CHUNK_SIZE = 50;
 
-export async function POST(req: Request) {
+export async function POST() {
   // Added 'req: Request' for better typing in Next.js API routes
   try {
     await dbConnect();
