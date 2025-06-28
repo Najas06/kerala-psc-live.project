@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BriefcaseBusiness, GalleryVerticalEnd, Library, Newspaper } from "lucide-react";
+import { BriefcaseBusiness, GalleryVerticalEnd, Library, Mail, Newspaper } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 import { SidebarOptInForm } from "@/components/sidebar-opt-in-form";
@@ -37,6 +37,11 @@ const NavLinks = [
     title:"Add New Syllabus",
     href:"/dashboard/add-syllabus",
     icon: <Library />,
+  },
+  {
+    title:"Send Email Notification",
+    href:"/dashboard/send-email-notification",
+    icon: <Mail />,
   }
 ]
 
